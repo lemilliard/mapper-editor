@@ -26,23 +26,33 @@ const state = {
 };
 
 const getters = {
-  getIndexOfFile(state, file) {
-    return state.files.findIndex(f => f.id === file.id);
+  getMaxId(state) {
+    if (state.files.length > 0) {
+      return Math.max(...state.files.map(f => f.id));
+    }
+    return -1;
+  },
+  getIndexById(state, id) {
+    return state.files.findIndex(f => f.id === id);
   },
   getById(state, id) {
-    return state.files[id];
+    return state.files.filter(file => file.id === parseInt(id, 10))[0];
   },
   getCurrentFile(state) {
-    return state.files[state.active];
+    return getters.getById(state, state.active);
   },
 };
 
 const mutations = {
-  SELECT(state, index) {
-    state.active = index;
+  SELECT(state, id) {
+    if (id === -1) {
+      state.active = 0;
+    } else {
+      state.active = id;
+    }
   },
   NEW_FILE(state) {
-    const newIndex = state.files.length;
+    const newIndex = getters.getMaxId(state) + 1;
     state.files.push(
       {
         id: newIndex,
@@ -63,7 +73,15 @@ const mutations = {
     );
   },
   CLOSE_FILE(state, id) {
-    state.files = state.files.filter(file => file.id !== id);
+    if (id !== undefined) {
+      state.files = state.files.filter(file => file.id !== id);
+    } else if (state.files.length > 0) {
+      mutations.CLOSE_FILE(state, getters.getCurrentFile(state).id);
+    }
+    if (state.files.length === 0) {
+      mutations.NEW_FILE(state);
+    }
+    mutations.SELECT(state, getters.getMaxId(state));
   },
   ADD_DICTIONNARY(state, type) {
     console.log(type);

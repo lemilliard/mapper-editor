@@ -22,7 +22,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "mapper-editor",
+    "productName": "Mapper Editor",
     "appId": "org.simulatedgreg.electron-vue",
     "directories": {
       "output": "build"

@@ -41,6 +41,10 @@ export default {
 	margin: 0;
   }
 
+  .el-tabs__item::selection {
+	background: transparent;
+  }
+
   .el-tabs__new-tab {
 	margin-right: 10px;
   }

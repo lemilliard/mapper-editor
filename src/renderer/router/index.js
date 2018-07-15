@@ -9,7 +9,7 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Pages.Editor,
+      component: Pages.Home,
     },
     {
       path: '/editor',

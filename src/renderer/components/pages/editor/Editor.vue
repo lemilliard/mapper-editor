@@ -56,7 +56,9 @@ export default {
     },
   },
   created() {
-    this.newFile();
+    if (this.files.length === 0) {
+      this.newFile();
+    }
   },
   methods: {
     ...mapActions({
@@ -66,19 +68,11 @@ export default {
       switchEditingName: 'switchEditingName',
     }),
     handleTabsEdit(targetName, action) {
-      let newTabIndex = 0;
       if (action === 'add') {
         this.newFile();
-        newTabIndex = this.files.length - 1;
       }
       if (action === 'remove') {
         this.closeFile(targetName);
-        newTabIndex = this.files.length - 1;
-      }
-      if (this.files[newTabIndex]) {
-        this.tabIndex = this.files[newTabIndex].id;
-      } else {
-        this.tabIndex = 0;
       }
     },
     handleClick(tab) {

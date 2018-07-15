@@ -18,10 +18,14 @@ function createWindow() {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 563,
     useContentSize: true,
-    width: 1000,
+    width: 800,
+    height: 600,
   });
+
+  mainWindow.maximize();
+  mainWindow.setMenu(null);
+  mainWindow.setTitle('Mapper Editor');
 
   mainWindow.loadURL(winURL);
 
