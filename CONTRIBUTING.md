@@ -1,10 +1,11 @@
 # How to contribute to the project
 
-1. Clone the project onto your machine.
-> `git clone <URL OF THE REPOSITORY>`
+1. Clone the project onto your machine : 
+    * `git clone "URL OF THE REPOSITORY"`  
 2. Checkout to the `develop` branch from the `master` branch.
-> `git checkout develop`
-3. Pull to get any of the very latest changes to the branch: `git pull` as you are working on the `develop` branch.
+    * `git checkout develop`
+3. Pull to get any of the very latest changes to the branch: 
+    * `git pull` as you are working on the `develop` branch.
 4. Checkout from `develop` to your very own feature branch using these guidelines:
     * The pattern to follow resembles this:
         > `ft_<NAME OF THE FEATURE>`
